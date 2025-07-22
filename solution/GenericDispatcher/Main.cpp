@@ -13,7 +13,7 @@ namespace MyLogger {
 	template<typename T, typename...Args>
 	struct fallback_impl {
 		static std::string Run(const T& value, Args&&... args) {
-			return "Could not convert.";
+			return "{Uknow Type}";
 			/* Or */
 			//static_assert(svh::always_false<T>::value, "No matching provider for this type/args!");
 		}
@@ -48,7 +48,7 @@ namespace MyLogger {
 }
 
 /* User decides they don't like the way bools are logged */
-/* They can just "overwrite" it */
+/* They can just "override" it */
 namespace MyLogger {
 	template<>
 	struct user_impl<bool> {

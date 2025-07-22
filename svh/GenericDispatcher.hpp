@@ -9,14 +9,14 @@ namespace svh {
 	struct always_false : std::false_type {};
 
 	/* SFINAE-detection, is true when Run is well formatted */
-	template< template<class, class...> class Provider, class T, class... Args>
+	template< template<class, class...> class Impl, class T, class... Args>
 	struct has_impl {
 	private:
-		// try to call Provider<T,Args...>::Run(v,args...)
+		// try to call Impl<T,Args...>::Run(v,args...)
 		template<class U>
 		static auto test(int)
 			-> decltype(
-				Provider<U, Args...>::Run(
+				Impl<U, Args...>::Run(
 					std::declval<const U&>(),
 					std::declval<Args>()...
 				),
@@ -31,24 +31,24 @@ namespace svh {
 		static constexpr bool value = decltype(test<T>(0))::value;
 	};
 
-	template< template<class, class...> class Provider, class T, class... Args>
-	constexpr bool has_impl_v = has_impl<Provider, T, Args...>::value;
+	template< template<class, class...> class Impl, class T, class... Args>
+	constexpr bool has_impl_v = has_impl<Impl, T, Args...>::value;
 
-	/* Tries every prodiver in given order to see if one of them is build correct*/
-	template< template<class, class...> class... Providers >
+	/* Tries every implementaion in given order to see if one of them is build correct*/
+	template< template<class, class...> class... Impls >
 	struct AnyDispatcher;
 
-	/* Default fallback, if no provider works */
+	/* Default fallback, if no Impl works */
 	template<>
 	struct AnyDispatcher<> {
 		template<class T, class... Args>
 		static auto Run(const T&, Args&&...) {
 			static_assert(always_false<T>::value,
-				"No matching provider for this type/args!");
+				"No matching Impl for this type/args!");
 		}
 	};
 
-	// Recursivly tries each provider in the list
+	// Recursivly tries each Impl in the list
 	template<
 		template<class, class...> class First,
 		template<class, class...> class... Rest
