@@ -1,4 +1,4 @@
-![Generic Dispatcher Example image](images\GenericDispatcherExampleNoBackground.png)
+![Generic Dispatcher Example image](https://raw.githubusercontent.com/Sven-vh/GenericDispatcher/refs/heads/main/images/GenericDispatcherExampleNoBackground.png?token=GHSAT0AAAAAACYOHL7M5FRFGU4UNY4UTUT62D75VGQ)
 
 # Generic Dispatcher
 
