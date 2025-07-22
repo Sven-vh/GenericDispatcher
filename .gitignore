@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+# folders
+.vs
+x64
