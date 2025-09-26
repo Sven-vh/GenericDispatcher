@@ -1,5 +1,8 @@
 ![Generic Dispatcher Example image](https://github.com/Sven-vh/GenericDispatcher/blob/main/images/GenericDispatcherExample.png)
 
+> [!TIP]
+> I found a better way of doing such a system. It uses tag_invoke/ADL, for example, see my [ImReflect](https://github.com/Sven-vh/ImReflect/blob/54dcad7cba687c355d05a5434713b471ec58a99c/ImReflect_entry.hpp#L88-L101) library that uses it.
+
 # Generic Dispatcher
 
 A system that helps me make scalable libraries. It allows me to have a single entry point and multiple implementations.
